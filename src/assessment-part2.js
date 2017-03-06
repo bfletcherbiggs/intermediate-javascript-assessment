@@ -42,15 +42,16 @@ function noWeakLink() {
     url: '/api/users'
   })
   // CODE HERE...
+  var defer = $q.defer()
   promise.then(function(response){
-    return firstUser = response.data[0]
+    firstUser = response.data[0]
   })
   promise.then(function(response){
-    return thirdUser = response.data[2]
-    // return response.data[9]
+    thirdUser = response.data[2]
+    defer.resolve(response.data[9])
   })
 
-  return promise;
+  return defer.promise;
 }
 
 
