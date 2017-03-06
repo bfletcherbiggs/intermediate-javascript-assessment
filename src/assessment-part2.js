@@ -11,7 +11,7 @@
 // You must use two .then functions to handle the response object.
 // Chain these functions off of $http (do not put them in variables)
 // The response object will look like this :
-/* 
+/*
     {
       data: [
         {
@@ -42,7 +42,13 @@ function noWeakLink() {
     url: '/api/users'
   })
   // CODE HERE...
-
+  promise.then(function(response){
+    return firstUser = response.data[0]
+  })
+  promise.then(function(response){
+    return thirdUser = response.data[2]
+    // return response.data[9]
+  })
 
   return promise;
 }
@@ -73,7 +79,9 @@ function large() {
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
 // CODE HERE...
-
+var boundToElephant = function(){
+  large.apply(elephant)
+}
 
 
 // *************
@@ -154,3 +162,25 @@ function large() {
 // NOTE: Neither hunger nor danger should be able to exceed 100 or drop below 0.
 
 // CODE HERE...
+var frodo = function (startingHungerValue,startingDangerValue){
+  this.num1 = startingHungerValue
+  this.num2 = startingDangerValue
+
+  this.dinnerOverFire = function(){
+    this.num1-=25<0?0:this.num1-=25;
+    this.num2+=40>100?100:this.num2+=40;
+    return {
+      hunger: this.num1,
+      danger: this.num2
+    }
+  }
+  this.hidingInBush = function(){
+    this.num1+=35>100?100:this.num1+=35;
+    this.num2-=20<0?0:this.num2-=20;
+    return{
+      hunger: this.num1,
+      danger: this.num2
+    }
+  }
+
+}
