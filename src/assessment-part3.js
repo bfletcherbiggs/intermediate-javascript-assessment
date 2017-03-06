@@ -32,8 +32,9 @@ var callBinding =  function(magicAnimals,updateAnimal,id){
 // CODE HERE...
 
 var applyBinding = function(magicAnimals,updateAnimal,id){
-  var animal = magicAnimals[id]
-  return updateAnimal.apply(animal,['being majestic', 'eating rainbows'])
+
+  return updateAnimal.apply(magicAnimals[id],['being majestic', 'eating rainbows'])
+
 }
 
 // *************
