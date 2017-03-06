@@ -79,9 +79,8 @@ function large() {
   return 'My name is ' + this.name + ' and I am very heavy!'
 }
 // CODE HERE...
-var boundToElephant = function(){
-  large.apply(elephant)
-}
+var boundToElephant = large.bind(elephant)
+
 
 
 // *************
@@ -94,7 +93,9 @@ var boundToElephant = function(){
 // Use explicit binding to give capacity the context of crew and return the result.
 
 // CODE HERE...
-
+var deathStar = function(capacity,crew){
+  return capacity.bind(crew)
+}
 
 
 // *************
@@ -110,7 +111,11 @@ var boundToElephant = function(){
 
 // CODE HERE...
 
-
+var accountingOffice = function (assets){
+  return function(liabilities){
+    return assets+liabilities;
+  }
+}
 
 // *************
 // * PROBLEM 5 *
@@ -135,6 +140,17 @@ var boundToElephant = function(){
 
 // CODE HERE...
 
+var forgetter = function(name){
+this.arr = []
+  return rememberall = function(item){
+
+    this.arr.push(item)
+    return {
+      name: name,
+      remember: this.arr
+    }
+  }
+}
 
 
 // *************
@@ -163,23 +179,24 @@ var boundToElephant = function(){
 
 // CODE HERE...
 var frodo = function (startingHungerValue,startingDangerValue){
-  this.num1 = startingHungerValue
-  this.num2 = startingDangerValue
-
-  this.dinnerOverFire = function(){
-    this.num1-=25<0?0:this.num1-=25;
-    this.num2+=40>100?100:this.num2+=40;
-    return {
-      hunger: this.num1,
-      danger: this.num2
-    }
-  }
-  this.hidingInBush = function(){
-    this.num1+=35>100?100:this.num1+=35;
-    this.num2-=20<0?0:this.num2-=20;
-    return{
-      hunger: this.num1,
-      danger: this.num2
+  var num1 = startingHungerValue
+  var num2 = startingDangerValue
+  return{
+    dinnerOverFire: function(){
+      num1-25 < 0 ? num1=0 : num1-=25;
+      num2+40 > 100 ? num2=100 : num2+=40;
+      return {
+        hunger: num1,
+        danger: num2
+      }
+    },
+    hidingInBush: function(){
+      num1+35>100?num1=100:num1+=35;
+      num2-20<0?num2=0:num2-=20;
+      return{
+        hunger: num1,
+        danger: num2
+      }
     }
   }
 
