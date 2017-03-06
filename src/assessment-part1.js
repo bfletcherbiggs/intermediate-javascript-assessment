@@ -167,8 +167,10 @@ var theAnswer = "Unknown";
 // CODE HERE...
 
 var promiseCatcher = function(param){
+  var deferred = $q.defer()
   param.then(function(response){
-    theAnswer = response;
+    deferred.resolve(theAnswer = response)
     // return theAnswer
   })
+  deferred.promise;
 }

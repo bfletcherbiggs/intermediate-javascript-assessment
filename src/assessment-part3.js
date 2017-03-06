@@ -13,7 +13,10 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
+var callBinding =  function(magicAnimals,updateAnimal,id){
 
+  return updateAnimal.call(magicAnimals[id],"Trogdor")
+}
 
 // *************
 // * PROBLEM 2 *
@@ -27,6 +30,11 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
+
+var applyBinding = function(magicAnimals,updateAnimal,id){
+  var animal = magicAnimals[id]
+  return updateAnimal.apply(animal,['being majestic', 'eating rainbows'])
+}
 
 // *************
 // * PROBLEM 3 *
@@ -44,7 +52,14 @@
 
 var foo;
 // CODE HERE...
-
+var promiseMe = function ($q){
+  var deferred = $q.defer()
+  setTimeout(function () {
+      foo='bar'
+      deferred.resolve(foo)
+  }, 20);
+  return deferred.promise;
+}
 
 // *************
 // * PROBLEM 4 *
@@ -59,3 +74,11 @@ var foo;
 // and then pass the array as you complete your promise.
 
 // CODE HERE...
+var emailList = function($q,$http){
+  var deferred = $q.defer()
+  $http.get('/api/users').then(function(response){
+
+  })
+
+  return deferred.promise;
+}
