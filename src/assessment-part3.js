@@ -77,7 +77,13 @@ var promiseMe = function ($q){
 var emailList = function($q,$http){
   var deferred = $q.defer()
   $http.get('/api/users').then(function(response){
+    var arr = response.data
+    var arrEmail = []
+    for (var item in arr){
 
+      arrEmail.push(arr[item].email)
+    }
+    deferred.resolve(arrEmail)
   })
 
   return deferred.promise;
